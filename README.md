@@ -13,3 +13,6 @@ App should run on: http://127.0.0.1:8000/
 Admin access console: http://127.0.0.1:8000/admin
 
 (Note, need to login with created user name and password to see admin console)
+
+Database migration line:
+"python3 manage.py migrate"
