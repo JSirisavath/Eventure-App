@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from .forms import SignUpForm
+from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import UsersProfile
+from django.contrib.auth import login as auth_login
+
 
 # For splash page
 
@@ -26,12 +28,12 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            profile = UsersProfile.objects.get_or_create(user=user)[0]
-            profile.full_name = form.cleaned_data.get('full_name')
-            profile.city = form.cleaned_data.get('city')
-            profile.save()
-            # login users
-            login(request, user)
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.email = form.cleaned_data.get('email')
+            user.save()
+            auth_login(request, user)  # Log the user in
 
             # Redirect to users profile
             return redirect('UsersProfile')
@@ -49,3 +51,16 @@ def view_own_users_profile(request):
     # Get Profile link to logged in user
     profile = UsersProfile.objects.get(user=request.user)
     return render(request, 'UsersProfile.html', {'profile': profile})
+
+
+# Update profile
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('UsersProfile')
+
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'editProfile.html', {'form': form})

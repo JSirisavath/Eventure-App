@@ -9,10 +9,8 @@ from django.dispatch import receiver
 class UsersProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, help_text='Create your username!')
-    full_name = models.CharField(
-        max_length=100, blank=False, help_text='* Full Name *')
-    city = models.CharField(max_length=50, blank=False, help_text='* City *')
-    state = models.CharField(max_length=50, blank=False, help_text='* State *')
+    city = models.CharField(max_length=50, blank=True, help_text='* City *')
+    state = models.CharField(max_length=50, blank=True, help_text='* State *')
     users_email = models.EmailField(max_length=254, help_text='Email address')
     instagram_username = models.CharField(
         max_length=30, blank=True, help_text='Instagram')
@@ -20,7 +18,6 @@ class UsersProfile(models.Model):
         max_length=30, blank=True, help_text='FaceBook')
     linkedin_username = models.CharField(
         max_length=30, blank=True, help_text='LinkedIn')
-
     interests = models.TextField(
         blank=True, help_text='Let us know about your interests!')
     events_attended = models.IntegerField(default=0)
@@ -31,17 +28,22 @@ class UsersProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-# Create or update user profile
+# Create or save user profile
+
+# Signal receiver to create a Profile whenever a User is created
 
 
 @receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UsersProfile.objects.create(user=instance)
-    else:
-        # Ensure profile exists before saving
-        if hasattr(instance, 'profile'):
-            instance.profile.save()
+
+# Signal receiver to save the Profile whenever the User is saved
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 # Events

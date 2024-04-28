@@ -7,21 +7,26 @@ from .models import UsersProfile
 
 
 class SignUpForm(UserCreationForm):
-    full_name = forms.CharField(max_length=100, required=True)
-    user_name = forms.CharField(max_length=50, required=True)
-    city = forms.CharField(max_length=50, required=True)
-    state = forms.CharField(max_length=50, required=True)
-    instagram_username = forms.CharField(max_length=30, required=False)
-    facebook_username = forms.CharField(max_length=30, required=False)
-    linkedin_username = forms.CharField(max_length=30, required=False)
-    interests = forms.CharField(widget=forms.Textarea, required=False)
-    events_attended = forms.IntegerField(
-        required=False, initial=0, help_text='Enter how many events you have attended.')
+    first_name = forms.CharField(
+        max_length=30, required=True, help_text='Required.')
+    last_name = forms.CharField(
+        max_length=30, required=True, help_text='Required.')
+    email = forms.EmailField(
+        max_length=254, help_text='Required. Inform a valid email address.')
 
-    class Meta:
+    # city = forms.CharField(max_length=50, required=True)
+    # state = forms.CharField(max_length=50, required=True)
+    # instagram_username = forms.CharField(max_length=30, required=False)
+    # facebook_username = forms.CharField(max_length=30, required=False)
+    # linkedin_username = forms.CharField(max_length=30, required=False)
+    # interests = forms.CharField(widget=forms.Textarea, required=False)
+    # events_attended = forms.IntegerField(
+    #     required=False, initial=0, help_text='Enter how many events you have attended.')
+
+    class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username', 'email', 'password1', 'password2', 'full_name', 'city', 'state',
-                  'instagram_username', 'facebook_username', 'linkedin_username', 'interests', 'events_attended')
+        fields = ('first_name', 'last_name', 'email',
+                  'username', 'password1', 'password2')
 
     # Save users
     def save(self, commit=True):
@@ -42,3 +47,12 @@ class SignUpForm(UserCreationForm):
                 'events_attended', 0)  # Save this new field
             user.profile.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UsersProfile
+        fields = '__all__'
+        widgets = {
+            'interests': forms.Textarea(attrs={'rows': 4}),
+        }

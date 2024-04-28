@@ -13,5 +13,7 @@ urlpatterns = [
     path('signup/',  views.signup, name='Sign Up'),
     path('login/', views.login, name='Log In'),  # Log in page
     # Profile Page currently in progress
-    path('profile/', views.view_own_users_profile, name='Profile')
+    path('profile/', views.view_own_users_profile, name='Profile'),
+    path('editProfile/', views.update_profile,
+         name='edit-profile'),  # Edit profile page
 ]
