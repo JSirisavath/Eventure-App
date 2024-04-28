@@ -40,7 +40,7 @@ def signup(request):
                                 password=form.cleaned_data['password1'])
             if user is not None:
                 auth_login(request, user)  # Log the user in
-                return redirect('EventsFeed')
+                return redirect('interests')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
