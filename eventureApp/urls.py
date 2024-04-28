@@ -1,13 +1,12 @@
+from django.urls import path
 
-from django.urls import path
-from .views import home
-from django.contrib import admin
-from django.urls import path
+# Views makes the html pages render to web app
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home, name='home'),
-    # path('dashboard/', dashboard, name='dashboard'),
-    # path('events-feed/', events_feed, name='events_feed'),
-    # path('sign-up/', sign_up, name='sign_up'),
+    path('', views.home, name='Welcome'),  # Home/Splash Page
+    path('events-feed/', views.eventsFeed,
+         name='Events Feed'),  # Events feed page
+    path('signup/',  views.signup, name='Sign Up'),
+    path('login/', views.login, name='Log In')  # Log in page
 ]
