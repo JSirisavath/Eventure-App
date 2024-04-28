@@ -19,6 +19,7 @@ urlpatterns = [
     path('profile/', views.view_own_users_profile, name='Profile'),
     path('editProfile/', views.update_profile,
          name='edit-profile'),  # Edit profile page
+     path('interests/', views.intersts_page, name='interests' )
 ]
 
 

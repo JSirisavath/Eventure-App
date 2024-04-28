@@ -68,3 +68,8 @@ def update_profile(request):
     else:
         form = ProfileForm(instance=request.user.profile)
     return render(request, 'editProfile.html', {'form': form})
+
+
+
+def intersts_page(request):
+    return render(request, 'InterestsPage.html')

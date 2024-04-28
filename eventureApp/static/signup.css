@@ -1,0 +1,49 @@
+body {
+    font-family: 'Arial', sans-serif; /* Assuming Arial, replace with your font if different */
+    background-color: #FEFCF4; /* Light background color from your palette */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* Remove default margin */
+  }
+  
+  form {
+    background: #FFFFFF; /* White background for the form */
+    padding: 20px;
+    border-radius: 50px; /* From your Figma, seems quite rounded */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Adjusted to match Figma's depth */
+    width: 483px; /* Width from your Figma design */
+    margin: auto; /* Center the form in the page */
+  }
+  
+  label {
+    display: block;
+    color: #4D4D4D; /* Dark label color from your palette */
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"] {
+    width: 100%; /* Full width of the form */
+    padding: 16px; /* Slightly larger padding for better touch area */
+    margin-bottom: 20px; /* Space between each field */
+    border: 1px solid #A3A3A3; /* Border color from your palette */
+    border-radius: 8px; /* Rounded corners for the fields */
+  }
+  
+  button {
+    background-color: #2845DD; /* Primary button color from your palette */
+    color: white;
+    font-size: 16px; /* Standard font size for buttons */
+    border: none;
+    padding: 16px 0; /* Larger padding for button */
+    cursor: pointer;
+    border-radius: 8px; /* Consistent with text field border-radius */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  button:hover {
+    background-color: #122587; /* Darker shade on hover */
+  }
+  
