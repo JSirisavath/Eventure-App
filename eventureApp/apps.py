@@ -7,4 +7,4 @@ class EventureSettingsConfig(AppConfig):
 
 # Signal handlers
     def ready(self):
-        from . import models  # Signals module in models.py
+        from .models import models  # Signals module in models.py

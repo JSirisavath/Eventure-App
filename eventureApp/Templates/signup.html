@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up Page</title>
-  </head>
-  <body>
-    <form method="post">
-      {% csrf_token %}
-      <p>
-        <label for="id_events_attended">Events Attended:</label>
-        {{ form.events_attended }} {% if form.events_attended.errors %}
-        <span class="error">{{ form.events_attended.errors }}</span>
-        {% endif %}
-        <small>{{ form.events_attended.help_text }}</small>
-      </p>
-      <p>
-        <label for="id_username">User Name:</label>
-        {{ form.username }} {% if form.username.errors %}
-        <span class="error">{{ form.username.errors }}</span>
-        {% endif %}
-      </p>
-      <button type="submit">Sign Up</button>
-    </form>
-    <label for="id_state">State:</label>
-    <h1>{{form.state}}</h1>
-  </body>
-</html>
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>Sign Up</h2>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function () {
+      form.querySelector("button[type='submit']").disabled = true;
+    });
+  });
+</script>
+{% endblock %}

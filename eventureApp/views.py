@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import SignUpForm, ProfileForm
@@ -5,7 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .models import UsersProfile
 from django.contrib.auth import login as auth_login
 
+from django.contrib.auth import authenticate
+import logging
 
+
+logger = logging.getLogger(__name__)
 # For splash page
 
 
@@ -27,22 +32,20 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            user.first_name = form.cleaned_data.get('first_name')
-            user.last_name = form.cleaned_data.get('last_name')
-            user.email = form.cleaned_data.get('email')
+            user = form.save(commit=False)
             user.save()
-            auth_login(request, user)  # Log the user in
-
-            # Redirect to users profile
-            return redirect('UsersProfile')
+            # Authenticate the user
+            user = authenticate(username=user.username,
+                                password=form.cleaned_data['password1'])
+            if user is not None:
+                auth_login(request, user)  # Log the user in
+                return redirect('EventsFeed')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
-
 # Login *** Need to add more login information logic
+
+
 def login(request):
     return redirect(request, 'login.html')
 

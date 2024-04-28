@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # Admin
     path('', views.home, name='Welcome'),  # Home/Splash Page
     path('events-feed/', views.eventsFeed,
-         name='Events Feed'),  # Events feed page
+         name='EventsFeed'),  # Events feed page
     path('signup/',  views.signup, name='Sign Up'),
     path('login/', views.login, name='Log In'),  # Log in page
     # Profile Page currently in progress
