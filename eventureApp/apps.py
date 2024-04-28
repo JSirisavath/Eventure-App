@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class EventuremeetupConfig(AppConfig):
+class EventureSettingsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'eventureMeetup'
+    name = 'eventureApp'
