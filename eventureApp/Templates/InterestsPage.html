@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interests Page</title>
+</head>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+
+  .image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .image-container img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .content {
+  position: absolute;
+  width: 100%;
+  bottom: 20px; /* Adjust as needed */
+  text-align: center; /* Centers the button horizontally */
+  z-index: 10;
+}
+
+
+  .sign-up-button {
+        background-color: #2845dd;
+        color: #fff;
+        border: none;
+        padding: 0.7rem 6rem;
+        text-align: center;
+        display: inline-block;
+        font-size: 20px;
+        margin: 20px 0;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: all 0.7s ease;
+      }
+
+      .sign-up-button:hover {
+        background-color: #0000ee; /* Slightly darker blue on hover */
+        box-shadow: 0 14px 18px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+      }
+
+
+  /* You can add more styles for your content here */
+  
+</style>
+<body>
+  <div class="image-container">
+    <img src="../static/images /interests page/Interests Page.1.png" alt="Selection of career and interest options on a welcome page">
+  </div>
+  <div class="content">
+    <button class = "sign-up-button" id="signUpButton">Continue</button>
+
+  </div>
+  
+</body>
+
+<script>
+  document.getElementById('signUpButton').addEventListener('click', function () {
+    window.location.href = "{% url 'EventsFeed' %}";
+  });
+  </script>
+</html>
+

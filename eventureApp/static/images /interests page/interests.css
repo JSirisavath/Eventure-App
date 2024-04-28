@@ -1,0 +1,43 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0; /* Optional: background color */
+}
+
+/* .image-container {
+    width: 80%; /* Adjust width as necessary */
+    height: 80%; /* Adjust height as necessary */
+    overflow: hidden; /* Ensures no scroll bars appear if the image is too large */
+} */
+
+img {
+    max-width: 5%;
+    max-height: 5%;
+    display: block; /* Removes bottom margin/spacing */
+}
+
+
+  
+  .sign-up-button {
+    background-color: #2845dd;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 6rem;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.7s ease;
+  }
+
+  .sign-up-button:hover {
+    background-color: #0000ee; /* Slightly darker blue on hover */
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+  }
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome!</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+
+      .main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 143px;
+        margin-top: 50px;
+        margin-left: 12px;
+      }
+      .content-section {
+        max-width: 300px;
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .middle-image {
+        margin-top: -167px;
+        transition: margin-top 0.7s;
+      }
+
+      .middle-image:hover {
+        margin-top: -35px;
+      }
+      .content-section img {
+        width: 100%;
+        height: auto;
+      }
+      .content-section h3 {
+        color: #555;
+        margin-top: 20px;
+      }
+      .logo {
+        font-size: 36px;
+        color: #0000ff;
+        margin: 20px 0;
+      }
+
+      .EventureLogoLargeImg {
+        width: 450px;
+        height: auto; /* Keeps the aspect ratio intact */
+        display: block; /* Allows for margin auto to work for horizontal centering */
+        margin: 0 auto;
+      }
+      .sign-up-button {
+        background-color: #2845dd;
+        color: #fff;
+        border: none;
+        padding: 0.7rem 6rem;
+        text-align: center;
+        display: inline-block;
+        font-size: 20px;
+        margin: 20px 0;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: all 0.7s ease;
+      }
+
+      .sign-up-button:hover {
+        background-color: #0000ee; /* Slightly darker blue on hover */
+        box-shadow: 0 14px 18px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+      }
+      .footer {
+        font-size: 22px;
+        color: #4d4d4d;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-content">
+      <div class="content-section">
+        <img
+          src="../static/images/splash_page_images/onboarding image 1 - 266 x 266.png"
+          alt="Discover professional events near you"
+        />
+        <h3>Discover professional events near you</h3>
+      </div>
+      <div class="content-section middle-image">
+        <img
+          src="../static/images/splash_page_images/onboarding image 2 - 266 x 266.png"
+          alt="Be yourself."
+        />
+        <h3>Be yourself.</h3>
+      </div>
+      <div class="content-section">
+        <img
+          src="../static/images/splash_page_images/onboarding image 3 - 266 x 266.png"
+          alt="Connect with like-minded professionals"
+        />
+        <h3>Connect with like-minded professionals</h3>
+      </div>
+    </div>
+    <div class="logo">
+      <img
+        class="EventureLogoLargeImg"
+        src="../static/images/splash_page_images/EventureLogoLarge.png"
+        alt="Eventure Large Logo"
+      />
+    </div>
+    <button class="sign-up-button" id="signUpButton">Sign Up</button>
+    <div class="footer">Start your eventure today!</div>
+    <!-- <a href="{% url 'Sign Up' %}">Sign up now</a>
+  
+    <a href="{% url 'Profile' %}">Profile</a> -->
+  </body>
+
+  <script>
+    document
+      .getElementById('signUpButton')
+      .addEventListener('click', function () {
+        window.location.href = "{% url 'Sign Up' %}";
+      });
+  </script>
+</html>
