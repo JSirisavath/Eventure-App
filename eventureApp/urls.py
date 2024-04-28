@@ -5,6 +5,9 @@ from django.contrib import admin
 # Views makes the html pages render to web app
 from . import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin
     path('', views.home, name='Welcome'),  # Home/Splash Page
@@ -17,3 +20,8 @@ urlpatterns = [
     path('editProfile/', views.update_profile,
          name='edit-profile'),  # Edit profile page
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

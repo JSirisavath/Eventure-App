@@ -62,6 +62,8 @@ class Event(models.Model):
         default=0)  # Field for tracking the number of attendees
     event_external_url = models.URLField(
         max_length=200, blank=True)  # External events URL
+    event_image = models.ImageField(
+        upload_to='events_images/', null=True, blank=True)
 
     def __str__(self):
         return self.event_Name

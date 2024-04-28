@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.decorators import login_required
-from .models import UsersProfile
+from .models import UsersProfile, Event
 from django.contrib.auth import login as auth_login
 
 from django.contrib.auth import authenticate
@@ -23,7 +23,8 @@ def home(request):
 # Events should also events cards to view and choose from
 # @login_required
 def eventsFeed(request):
-    return render(request, 'eventsFeed.html')
+    events = Event.objects.all().order_by('event_date')
+    return render(request, 'eventsFeed.html', {'events': events})
 
 # # For sign_up.html
 

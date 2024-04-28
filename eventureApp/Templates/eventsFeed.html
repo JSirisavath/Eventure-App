@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events Feed Dashboard</title>
   </head>
-  <body></body>
-  <h1>Events Feed Dashboard</h1>
+  <body>
+    <h1>Events Feed Dashboard</h1>
+    {% for event in events %}
+    <li>
+      <h1>{{event.event_Name}}</h1>
+      <h1>{{event.event_date}}</h1>
+      <h1>{{event.event_location}}</h1>
+      <h1>{{event.event_host_name}}</h1>
+      <h1>{{event.event_number_of_attendees}}</h1>
+      <h1>{{event.event_cost}}</h1>
+      <h1>{{event.event_description}}</h1>
+      <h1>{{event.event_external_url}}</h1>
+      <!-- Image Url -->
+      <div><img src="{{event.event_image.url}}" /></div>
+    </li>
+    -------- {% endfor %}
+  </body>
 </html>
