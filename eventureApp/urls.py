@@ -9,4 +9,6 @@ urlpatterns = [
          name='Events Feed'),  # Events feed page
     path('signup/',  views.signup, name='Sign Up'),
     path('login/', views.login, name='Log In')  # Log in page
+    # Profile Page currently in progress
+    path('profile/', views.profile, name='Profile')
 ]

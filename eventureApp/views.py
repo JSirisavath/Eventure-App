@@ -35,3 +35,6 @@ def signup(request):
 # Login *** Need to add more login information logic
 def login(request):
     return redirect(request, 'login.html')
+
+
+# def view_profile(request):
