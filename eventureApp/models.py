@@ -38,4 +38,28 @@ class UsersProfile(models.Model):
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         UsersProfile.objects.create(user=instance)
-    instance.profile.save()
+    else:
+        # Ensure profile exists before saving
+        if hasattr(instance, 'profile'):
+            instance.profile.save()
+
+
+# Events
+
+class Event(models.Model):
+    event_Name = models.CharField(max_length=200)
+    event_location = models.CharField(max_length=200)
+    event_date = models.DateTimeField()
+    event_description = models.TextField()
+    event_host_name = models.TextField()
+    event_cost = models.TextField()
+    event_number_of_attendees = models.IntegerField(
+        default=0)  # Field for tracking the number of attendees
+    event_external_url = models.URLField(
+        max_length=200, blank=True)  # External events URL
+
+    def __str__(self):
+        return self.event_Name
+
+    class Meta:
+        app_label = 'eventureApp'
