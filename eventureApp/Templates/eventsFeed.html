@@ -3,23 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events Feed Dashboard</title>
+    <title>Eventure - Discover Events</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <style>
+          body {
+            background-color: #f4f4f4; /* Example background color */
+          }
+          .event-card {
+               display: flex;
+    align-items: flex-start;
+    width: 841px;
+    min-height: 174px; /* Changed to min-height to allow expansion if content overflows */
+    margin: 20px auto; /* Adds top and bottom margin and auto for horizontal centering */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+          }
+
+          .event-image-container {
+  flex: 0 0 200px; /* flex-grow, flex-shrink, flex-basis */
+  height: 154px; /* Adjusted to fit within the card with padding */
+  overflow: hidden; /* Hide overflow to maintain aspect ratio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 21px;
+  margin-left: 20px;
+}
+          .event-image {
+            width: 183px;
+            height: 135;
+            border-radius: 4px;
+            margin-top: 11.95px;
+            margin-bottom: 26.95px;
+            margin-right: -20px;
+
+
+          }
+          .event-content {
+            margin-top: 16px;
+          }
+          .event-title {
+            font-size: 20px; /* Larger font size for the title */
+            font-weight: bold;
+            margin-bottom: 5px;
+          }
+          .event-date{
+            font-weight: 600;
+            font-size: 16px;
+            color: #7E7E7E;
+            margin-bottom: 8px;
+          
+          }
+          .event-location ,
+          
+          .event-host-name,
+          .event-attendees,
+          .event-cost,
+          .event-description {
+            font-size: 14px;
+            margin-bottom: 2px;
+          }
+          .event-description {
+            font-size: 14px;
+            color: #666;
+          }
+          .event-action-buttons {
+            text-align: right; /* Align action buttons to the right */
+          }
+          .event-action-buttons a {
+            margin-right: 10px;
+          }
+    </style>
   </head>
   <body>
-    <h1>Events Feed Dashboard</h1>
-    {% for event in events %}
-    <li>
-      <h1>{{event.event_Name}}</h1>
-      <h1>{{event.event_date}}</h1>
-      <h1>{{event.event_location}}</h1>
-      <h1>{{event.event_host_name}}</h1>
-      <h1>{{event.event_number_of_attendees}}</h1>
-      <h1>{{event.event_cost}}</h1>
-      <h1>{{event.event_description}}</h1>
-      <h1>{{event.event_external_url}}</h1>
-      <!-- Image Url -->
-      <div><img src="{{event.event_image.url}}" /></div>
-    </li>
-    -------- {% endfor %}
+   <div class="container">
+          <h1 class="mb-4">Suggested Events</h1>
+          {% for event in events %}
+            <div class="event-card">
+  <div class="event-image-container">
+    <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+  </div>
+  <div class="event-content">
+    <h2 class="event-title">{{ event.event_name }}</h2>
+    <p class="event-date">{{ event.event_date }}</p>
+    <p class="event-location">{{ event.event_location }}</p>
+    <p class="event-host-name">Hosted by: {{ event.event_host_name }}</p>
+    <p class="event-attendees">Attendees: {{ event.event_number_of_attendees }}</p>
+    <p class="event-cost">Cost: {{ event.event_cost }}</p>
+    <div class="event-action-buttons">
+              <a href="{{ event.event_external_url }}" class="btn btn-primary" target="_blank">More Info</a>
+              <button class="btn btn-outline-secondary">Save</button>
+              <button class="btn btn-outline-secondary">Share</button>
+  </div>
+</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
